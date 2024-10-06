@@ -45,3 +45,29 @@ public:
         return solve(cost,n);
     }
 };
+
+// third method:- optimized tabulation method space complexity O(1)
+
+class Solution {
+private:
+    int solve(vector<int> &cost, int n){
+
+        int firstOne = cost[0];
+        int secOne = cost[1];
+
+        int ans = 0;
+
+        for(int i = 2; i < n; i++){
+            ans = cost[i] + min(firstOne,secOne);
+            firstOne = secOne;
+            secOne = ans;
+        }
+       return min(firstOne,secOne);
+    }
+    
+public:
+    int minCostClimbingStairs(vector<int>& cost) {
+        int n = cost.size();
+        return solve(cost,n);
+    }
+};
